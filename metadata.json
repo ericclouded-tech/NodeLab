@@ -1,0 +1,5 @@
+{
+  "name": "Node LAB 2.0-测试发布 - 无限画布 AI 工作流",
+  "description": "基于无限画布的节点式 AI 工作流工具，支持文字、图片、视频生成的专家协作与多模型组合。",
+  "requestFramePermissions": []
+}

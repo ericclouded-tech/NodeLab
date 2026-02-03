@@ -1,0 +1,122 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Node LAB - 无限画布 AI 工作流</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reactflow@11.10.1/dist/style.css" />
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #0b0b0b;
+      color: #e5e5e5;
+      overflow: hidden;
+      touch-action: none; /* 防止浏览器默认手势干扰画布 */
+    }
+    /* 核心性能修复：禁止连线路径的任何过渡效果，彻底消除滞后感 */
+    .react-flow__edge-path {
+      transition: none !important;
+      stroke-dasharray: 0 !important;
+      animation: none !important;
+    }
+    .react-flow__handle {
+      width: 14px !important;
+      height: 14px !important;
+      background: #3b82f6;
+      border: 2px solid #0b0b0b !important;
+      border-radius: 4px !important;
+      transition: all 0.2s ease;
+    }
+    .react-flow__handle:hover {
+      width: 18px !important;
+      height: 18px !important;
+      background: #60a5fa !important;
+    }
+    .react-flow__edge.selected .react-flow__edge-path {
+      stroke: #ef4444 !important;
+      stroke-width: 3;
+    }
+    .react-flow__controls button {
+      background: #1f2937;
+      fill: #f3f4f6;
+      border-bottom: 1px solid #374151;
+    }
+    .react-flow__controls button:hover {
+      background: #374151;
+    }
+    .react-flow__minimap {
+      background-color: #111827 !important;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    /* 移动端专属样式优化 */
+    @media (max-width: 768px) {
+      .react-flow__minimap {
+        display: none !important; /* 手机端隐藏小地图 */
+      }
+      .react-flow__controls {
+        display: none !important; /* 手机端隐藏控制按钮 */
+      }
+      .react-flow__panel {
+        transform: scale(0.62); /* 略微调小比例 */
+        margin: 0 !important;
+      }
+      .react-flow__panel.top.left {
+        transform-origin: top left;
+        margin-top: 8px !important;
+        margin-left: 8px !important;
+      }
+      .react-flow__panel.top.right {
+        transform-origin: top right;
+        margin-top: 8px !important;
+        margin-right: 8px !important;
+      }
+      .react-flow__panel.top.center {
+        transform-origin: top center;
+        margin-top: 8px !important;
+      }
+      .react-flow__panel.bottom.center {
+        transform-origin: bottom center;
+        transform: scale(0.68) translateY(-4px);
+      }
+      /* 针对手机端增加 Handle 触摸面积 */
+      .react-flow__handle {
+        width: 22px !important;
+        height: 22px !important;
+      }
+    }
+
+    ::-webkit-scrollbar {
+      width: 4px;
+      height: 4px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #111827;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #374151;
+      border-radius: 4px;
+    }
+  </style>
+<script type="importmap">
+{
+  "imports": {
+    "react/": "https://esm.sh/react@^19.2.3/",
+    "react": "https://esm.sh/react@^19.2.3",
+    "@google/genai": "https://esm.sh/@google/genai@^1.38.0",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
+    "zustand": "https://esm.sh/zustand@^5.0.10",
+    "reactflow": "https://esm.sh/reactflow@^11.11.4",
+    "react-dom": "https://esm.sh/react-dom@^19.2.4"
+  }
+}
+</script>
+</head>
+<body>
+  <div id="root"></div>
+</body>
+</html>
